@@ -4,6 +4,7 @@
 mac osx 10.11 el capitan
 pandoc 1.17.0.3 < Compiled with texmath 0.8.6.3, highlighting-kate 0.6.2.
 pdftk2.02
+LibreOffice 5.3.3.2
 ```
 
 # explanation
@@ -47,7 +48,20 @@ ls | sed 's/\./zzzz/g' | awk -F'_|zzzz| ' '{a=$0; gsub("zzzz",".",a); print "mv"
 for i in `ls`; do echo $i" "`grep ${i%.*} ../students/students_edited.txt` | sed 's/\./ /g' |awk -F' |_' '{print "mv "$1"_"$2"."$3" "$6"_"$1$2"."$3}' | sh; done
 ```
 
+```
 make each file to pdf by acrobat
+
+or
+
+soffice --headless --convert-to pdf:writer_pdf_Export *.doc
+soffice --headless --convert-to pdf:writer_pdf_Export *.docx
+soffice --headless --convert-to pdf:writer_pdf_Export *.pptx
+soffice --headless --convert-to pdf:writer_pdf_Export *.ppt
+soffice --headless --convert-to pdf:writer_pdf_Export *.xlsx
+soffice --headless --convert-to pdf:writer_pdf_Export *.xls
+soffice --headless --convert-to pdf:writer_pdf_Export *.txt
+soffice --headless --convert-to pdf:writer_pdf_Export *.rtf
+```
 
 ```
 cp *.pdf ../pdf/
@@ -74,8 +88,10 @@ pdftk *.pdf output ../output.pdf
 ```tree.
 $ tree
 .
+├── 0_all.sh
 ├── 1_rename.sh
-├── 2_mk_merge_pdf.sh
+├── 2_file2pdf.sh
+├── 3_mk_merge_pdf.sh
 ├── file
 │   ├── Sato\ Jiro_123102_assignsubmission_file_課?\214.pdf
 │   ├── Yamada\ Taro_123001_assignsubmission_file_abc?\217?\201?課?\214.docx
@@ -102,7 +118,21 @@ ls | sed 's/\./zzzz/g' | awk -F'_|zzzz| ' '{a=$0; gsub("zzzz",".",a); print "mv"
 for i in `ls`; do echo $i" "`grep ${i%.*} ../students/students_edited.txt` | sed 's/\./ /g' |awk -F' |_' '{print "mv "$1"_"$2"."$3" "$6"_"$1$2"."$3}' | sh; done
 ```
 
-```2_mk_merge_pdf.sh
+```2_file2pdf.sh
+#!/bin/sh
+cd file/
+soffice --headless --convert-to pdf:writer_pdf_Export *.doc
+soffice --headless --convert-to pdf:writer_pdf_Export *.docx
+soffice --headless --convert-to pdf:writer_pdf_Export *.pptx
+soffice --headless --convert-to pdf:writer_pdf_Export *.ppt
+soffice --headless --convert-to pdf:writer_pdf_Export *.xlsx
+soffice --headless --convert-to pdf:writer_pdf_Export *.xls
+soffice --headless --convert-to pdf:writer_pdf_Export *.txt
+soffice --headless --convert-to pdf:writer_pdf_Export *.rtf
+soffice --headless --convert-to pdf:writer_pdf_Export *.html
+```
+
+```3_mk_merge_pdf.sh
 #!/bin/sh
 cd file/
 
@@ -124,14 +154,15 @@ pdftk *.pdf output ../output.pdf
 ```
 
 ## usage
-```usage1.
-chmod +x 1_rename.sh
-chmod +x 2_mk_merge_pdf.sh 
-./1_rename.sh
 ```
+chmod +x 1_rename.sh
+chmod +x 2_file2pdf.sh
+chmod +x 3_mk_merge_pdf.sh 
+./1_rename.sh
 
 make file to pdf by acrobat
+or
+./2_file2pdf.sh
 
-```usage2.
-./2_mk_merge_pdf.sh 
+./3_mk_merge_pdf.sh 
 ```
