@@ -129,7 +129,8 @@ chmod +x 1_rename.sh
 chmod +x 2_mk_merge_pdf.sh 
 ./1_rename.sh
 ```
-pdf化 by acrobat
+
+make file to pdf by acrobat
 
 ```usage2.
 ./2_mk_merge_pdf.sh 
