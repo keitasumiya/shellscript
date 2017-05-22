@@ -1,7 +1,10 @@
 # environments
+
+```
 mac osx 10.11 el capitan
 pandoc 1.17.0.3 < Compiled with texmath 0.8.6.3, highlighting-kate 0.6.2.
 pdftk2.02
+```
 
 # explanation
 http://qiita.com/keitasumiya/items/8f4febe8d5a0b66a4b9a
