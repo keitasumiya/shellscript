@@ -22,10 +22,10 @@ export PATH=$PATH:/Applications/LibreOffice.app/Contents/MacOS
 # usage
 
 ```
-before set path:
+doc2pdf(before set path):
 /Applications/LibreOffice.app/Contents/MacOS/soffice --headless --convert-to pdf:writer_pdf_Export *.doc
 
-after set path:
+doc2pdf(after set path):
 soffice --headless --convert-to pdf:writer_pdf_Export *.doc
 
 version_check:
