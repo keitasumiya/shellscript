@@ -9,3 +9,4 @@ soffice --headless --convert-to pdf:writer_pdf_Export *.xls
 soffice --headless --convert-to pdf:writer_pdf_Export *.txt
 soffice --headless --convert-to pdf:writer_pdf_Export *.rtf
 soffice --headless --convert-to pdf:writer_pdf_Export *.html
+soffice --headless --convert-to pdf:writer_pdf_Export *.odt
