@@ -14,16 +14,7 @@ ls | awk '{a=$0; gsub(" ","_",a); print "mv \""$0"\" \""a"\""}' | sh
 ls | sed 's/\./zzzz/g' | awk -F'_|zzzz| ' '{a=$0; gsub("zzzz",".",a); print "mv \""a"\" \""$1"_"$2"."$NF"\""}' | sh
 for i in `ls`; do echo $i" "`grep ${i%.*} ../students/students_edited.txt` | sed 's/\./ /g' |awk -F' |_' '{print "mv "$1"_"$2"."$3" "$6"_"$1$2"."$3}' | sh; done
 
-soffice --headless --convert-to pdf:writer_pdf_Export *.doc
-soffice --headless --convert-to pdf:writer_pdf_Export *.docx
-soffice --headless --convert-to pdf:writer_pdf_Export *.pptx
-soffice --headless --convert-to pdf:writer_pdf_Export *.ppt
-soffice --headless --convert-to pdf:writer_pdf_Export *.xlsx
-soffice --headless --convert-to pdf:writer_pdf_Export *.xls
-soffice --headless --convert-to pdf:writer_pdf_Export *.txt
-soffice --headless --convert-to pdf:writer_pdf_Export *.rtf
-soffice --headless --convert-to pdf:writer_pdf_Export *.html
-soffice --headless --convert-to pdf:writer_pdf_Export *.odt
+for i in `ls | grep -v .pdf`; do soffice --headless --convert-to pdf:writer_pdf_Export $i; done
 
 cp *.pdf ../pdf/
 
